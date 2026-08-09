@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+    --color-accent: #6c63ff;
+    --font-display: "Space Grotesk", sans-serif;
+    --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+}
