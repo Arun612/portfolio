@@ -2,14 +2,21 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="/css/output.css" />
+    <%- include('../partials/head') %>
 </head>
 
 <body>
-    <%- body %>
+    <%- include('../partials/navbar') %>
+        <%- include('../partials/flash') %>
+
+            <main class="min-h-screen">
+                <%- body %>
+            </main>
+
+            <%- include('../partials/footer') %>
+
+                <script src="/js/main.js"></script>
+                <script src="/js/darkMode.js"></script>
 </body>
 
 </html>

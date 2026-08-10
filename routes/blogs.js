@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const blogController = require('../controllers/blogController');
 
-router.get('/', (req, res) => {
-    res.send('Blogs route working!');
-});
+router.get('/', blogController.index);
+router.get('/:slug', blogController.show);
 
 module.exports = router;

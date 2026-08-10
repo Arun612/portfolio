@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const homeController = require('../controllers/homeController');
 
-router.get('/', (req, res) => {
-    res.send('Server is working!'); // temporary, replace in Phase 2
-});
+router.get('/', homeController.home);
+router.get('/about', homeController.about);
 
 module.exports = router;

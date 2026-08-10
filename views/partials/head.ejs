@@ -1,0 +1,29 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>
+    <%= typeof title !=='undefined' ? title + ' | Arun A' : 'Arun A — Portfolio' %>
+</title>
+<meta name="description"
+    content="<%= typeof description !== 'undefined' ? description : 'Arun A — AI/ML Engineer & Full-Stack Developer. B.Tech EEE, NIT Calicut.' %>" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+
+<!-- Favicon (add your own later in public/images) -->
+<link rel="icon" type="image/png" href="/images/favicon.png" />
+
+<!-- Tailwind output -->
+<link rel="stylesheet" href="/css/output.css" />
+
+<!-- Dark mode: set before paint to avoid flash of wrong theme -->
+<script>
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+</script>

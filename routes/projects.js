@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const projectController = require('../controllers/projectController');
 
-router.get('/', (req, res) => {
-    res.send('Projects route working!');
-});
+router.get('/', projectController.index);
+router.get('/:slug', projectController.show);
 
 module.exports = router;

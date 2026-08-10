@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
     --color-accent: #6c63ff;
@@ -10,5 +11,30 @@
 @layer base {
     html {
         scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 font-sans transition-colors duration-300;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        @apply font-display;
+    }
+}
+
+@layer components {
+    .btn-primary {
+        @apply bg-accent text-white px-5 py-2.5 rounded-xl font-medium hover:scale-105 active:scale-95 transition-transform duration-200;
+    }
+
+    .card {
+        @apply bg-white/70 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-2xl shadow-lg p-6;
+    }
+
+    .nav-link {
+        @apply text-gray-600 dark:text-gray-300 hover:text-accent dark:hover:text-accent transition-colors duration-200 font-medium;
     }
 }
