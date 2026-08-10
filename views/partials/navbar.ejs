@@ -48,6 +48,12 @@
         <a href="/blogs" class="nav-link">Blog</a>
         <a href="/experience" class="nav-link">Experience</a>
         <a href="/contact" class="nav-link">Contact</a>
-        <button id="theme-toggle-mobile" class="nav-link text-left">Toggle dark mode</button>
+        <% if (currentUser) { %>
+            <a href="/admin/dashboard" class="nav-link">Dashboard</a>
+            <form action="/logout" method="POST" class="inline">
+                <button type="submit" class="nav-link">Logout</button>
+            </form>
+            <% } %>
+                <button id="theme-toggle-mobile" class="nav-link text-left">Toggle dark mode</button>
     </div>
 </nav>
