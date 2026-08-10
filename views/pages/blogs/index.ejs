@@ -1,4 +1,23 @@
 <section class="max-w-5xl mx-auto px-6 py-16">
-    <h1 class="text-4xl font-bold mb-6">Blog</h1>
-    <p class="text-gray-600 dark:text-gray-400">Posts coming soon.</p>
+    <h1 class="text-4xl font-bold mb-8">Blog</h1>
+    <% if (blogs.length===0) { %>
+        <p class="text-gray-600 dark:text-gray-400">No posts yet — check back soon.</p>
+        <% } else { %>
+            <div class="grid gap-6">
+                <% blogs.forEach(blog=> { %>
+                    <a href="/blogs/<%= blog.slug %>" class="card block hover:scale-[1.01] transition-transform">
+                        <h2 class="font-display text-xl font-bold mb-2">
+                            <%= blog.title %>
+                        </h2>
+                        <div class="flex flex-wrap gap-2">
+                            <% blog.tags.forEach(tag=> { %>
+                                <span class="text-xs px-2 py-1 rounded-full bg-accent/10 text-accent">
+                                    <%= tag %>
+                                </span>
+                                <% }) %>
+                        </div>
+                    </a>
+                    <% }) %>
+            </div>
+            <% } %>
 </section>

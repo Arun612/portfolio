@@ -1,4 +1,29 @@
 <section class="max-w-5xl mx-auto px-6 py-16">
-    <h1 class="text-4xl font-bold mb-6">Experience</h1>
-    <p class="text-gray-600 dark:text-gray-400">Timeline coming soon.</p>
+    <h1 class="text-4xl font-bold mb-8">Experience</h1>
+    <div class="space-y-6">
+        <% experience.forEach(exp=> { %>
+            <div class="card">
+                <div class="flex justify-between items-start mb-2">
+                    <h2 class="font-display text-xl font-bold">
+                        <%= exp.role %>
+                    </h2>
+                    <span class="text-xs px-2 py-1 rounded-full bg-accent/10 text-accent">
+                        <%= exp.type %>
+                    </span>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 mb-2">
+                    <%= exp.organization %>
+                </p>
+                <p class="text-sm text-gray-500 dark:text-gray-500 mb-3">
+                    <%= exp.startDate.toLocaleDateString('en-US', { month: 'short' , year: 'numeric' }) %>
+                        –
+                        <%= exp.endDate ? exp.endDate.toLocaleDateString('en-US', { month: 'short' , year: 'numeric' })
+                            : 'Present' %>
+                </p>
+                <p class="text-gray-600 dark:text-gray-400">
+                    <%= exp.description %>
+                </p>
+            </div>
+            <% }) %>
+    </div>
 </section>
