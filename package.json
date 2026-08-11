@@ -14,6 +14,9 @@
   "type": "commonjs",
   "dependencies": {
     "@exortek/express-mongo-sanitize": "^3.0.1",
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/typography": "^0.5.20",
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.10.0",
     "connect-flash": "^0.1.1",
@@ -35,14 +38,12 @@
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^9.1.0",
-    "slugify": "^1.6.9"
+    "postcss": "^8.5.26",
+    "slugify": "^1.6.9",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.3",
-    "@tailwindcss/typography": "^0.5.20",
     "concurrently": "^10.0.4",
-    "nodemon": "^3.1.14",
-    "postcss": "^8.5.26",
-    "tailwindcss": "^4.3.3"
+    "nodemon": "^3.1.14"
   }
 }
