@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const isAdmin = require('../middleware/isAdmin');
+const upload = require('../middleware/upload');
 
 router.get('/', isAdmin, (req, res) => {
     res.redirect('/admin/dashboard');
