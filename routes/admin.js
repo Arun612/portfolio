@@ -48,4 +48,9 @@ router.get('/gallery', isAdmin, adminController.galleryIndex);
 router.post('/gallery', isAdmin, upload.single('image'), adminController.galleryCreate);
 router.delete('/gallery/:id', isAdmin, adminController.galleryDelete);
 
+// ---------- Messages ----------
+router.get('/messages', isAdmin, adminController.messagesIndex);
+router.put('/messages/:id/read', isAdmin, adminController.messagesMarkRead);
+router.delete('/messages/:id', isAdmin, adminController.messagesDelete);
+
 module.exports = router;

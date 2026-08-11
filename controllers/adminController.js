@@ -6,6 +6,7 @@ const Skill = require('../models/Skill');
 const Certificate = require('../models/Certificate');
 const Experience = require('../models/Experience');
 const Gallery = require('../models/Gallery');
+const Message = require('../models/Message');
 
 
 exports.projectsIndex = catchAsync(async (req, res) => {
@@ -227,4 +228,23 @@ exports.galleryDelete = catchAsync(async (req, res) => {
     await Gallery.findByIdAndDelete(req.params.id);
     req.flash('success', 'Image removed.');
     res.redirect('/admin/gallery');
+});
+
+
+// ---------- Messages ----------
+
+exports.messagesIndex = catchAsync(async (req, res) => {
+    const messages = await Message.find({}).sort({ createdAt: -1 });
+    res.render('pages/admin/messages/index', { title: 'Messages', messages });
+});
+
+exports.messagesMarkRead = catchAsync(async (req, res) => {
+    await Message.findByIdAndUpdate(req.params.id, { read: true });
+    res.redirect('/admin/messages');
+});
+
+exports.messagesDelete = catchAsync(async (req, res) => {
+    await Message.findByIdAndDelete(req.params.id);
+    req.flash('success', 'Message deleted.');
+    res.redirect('/admin/messages');
 });
