@@ -3,9 +3,29 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --color-accent: #6c63ff;
-    --font-display: "Space Grotesk", sans-serif;
-    --font-sans: "Inter", sans-serif;
+    --font-display: "Syne", sans-serif;
+    --font-sans: "IBM Plex Sans", sans-serif;
+    --font-mono: "IBM Plex Mono", monospace;
+}
+
+:root {
+    --color-bg: #F7F9FB;
+    --color-surface: #FFFFFF;
+    --color-accent: #0F9C90;
+    --color-signal: #B5790A;
+    --color-ink: #14202E;
+    --color-muted: #55657A;
+    --grid-line: rgba(15, 156, 144, 0.05);
+}
+
+.dark {
+    --color-bg: #0A0F1C;
+    --color-surface: #111927;
+    --color-accent: #4FD1C5;
+    --color-signal: #F0B429;
+    --color-ink: #E6EDF3;
+    --color-muted: #7C8BA1;
+    --grid-line: rgba(79, 209, 197, 0.035);
 }
 
 @layer base {
@@ -14,27 +34,130 @@
     }
 
     body {
-        @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 font-sans transition-colors duration-300;
+        @apply font-sans transition-colors duration-300;
+        background-color: var(--color-bg);
+        color: var(--color-ink);
+        background-image:
+            linear-gradient(var(--grid-line) 1px, transparent 1px),
+            linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+        background-size: 32px 32px;
     }
 
     h1,
     h2,
     h3,
     h4 {
-        @apply font-display;
+        @apply font-display tracking-tight;
     }
 }
 
 @layer components {
     .btn-primary {
-        @apply bg-accent text-white px-5 py-2.5 rounded-xl font-medium hover:scale-105 active:scale-95 transition-transform duration-200;
+        @apply px-5 py-2.5 rounded-lg font-medium font-mono text-sm hover:scale-105 active:scale-95 transition-transform duration-200;
+        background-color: var(--color-accent);
+        color: var(--color-bg);
     }
 
+    /* Schematic-style card: corner brackets instead of a plain border */
     .card {
-        @apply bg-white/70 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-2xl shadow-lg p-6;
+        @apply relative p-6 transition-transform duration-200;
+        background-color: color-mix(in srgb, var(--color-accent) 4%, transparent);
+        border: 1px solid color-mix(in srgb, var(--color-accent) 18%, transparent);
+        border-radius: 4px;
+    }
+
+    .card::before,
+    .card::after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-color: var(--color-accent);
+        opacity: 0.6;
+    }
+
+    .card::before {
+        top: -1px;
+        left: -1px;
+        border-top: 2px solid;
+        border-left: 2px solid;
+    }
+
+    .card::after {
+        bottom: -1px;
+        right: -1px;
+        border-bottom: 2px solid;
+        border-right: 2px solid;
     }
 
     .nav-link {
-        @apply text-gray-600 dark:text-gray-300 hover:text-accent dark:hover:text-accent transition-colors duration-200 font-medium;
+        @apply font-mono text-sm uppercase tracking-wide transition-colors duration-200;
+        color: var(--color-muted);
+    }
+
+    .nav-link:hover {
+        color: var(--color-accent);
+    }
+
+    /* Tech-stack / tag chips, styled like component labels */
+    .chip {
+        @apply text-xs px-2 py-1 rounded font-mono;
+        background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+        color: var(--color-accent);
+        border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+    }
+
+    /* The signature element: an animated trace line */
+    .trace-line {
+        position: relative;
+    }
+
+    .trace-line::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--color-accent) 30%, transparent), transparent);
+    }
+
+    .trace-pulse {
+        position: absolute;
+        left: 50%;
+        width: 6px;
+        height: 6px;
+        margin-left: -3px;
+        border-radius: 50%;
+        background: var(--color-accent);
+        box-shadow: 0 0 8px 2px var(--color-accent);
+        animation: trace-travel 4s linear infinite;
+    }
+
+    @keyframes trace-travel {
+        0% {
+            top: 0%;
+            opacity: 0;
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            top: 100%;
+            opacity: 0;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .trace-pulse {
+            animation: none;
+            display: none;
+        }
     }
 }
