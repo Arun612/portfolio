@@ -1,0 +1,42 @@
+<section class="max-w-3xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold mb-8">Manage Skills</h1>
+
+    <form action="/admin/skills" method="POST" class="card flex flex-wrap gap-3 items-end mb-8">
+        <div class="flex-1 min-w-[140px]">
+            <label class="block text-sm font-medium mb-1">Name</label>
+            <input type="text" name="name" required
+                class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-white/10 dark:bg-white/5" />
+        </div>
+        <div>
+            <label class="block text-sm font-medium mb-1">Category</label>
+            <select name="category"
+                class="px-3 py-2 rounded-lg border border-gray-300 dark:border-white/10 dark:bg-white/5">
+                <option value="AI/ML">AI/ML</option>
+                <option value="Web">Web</option>
+                <option value="Embedded">Embedded</option>
+                <option value="Tools">Tools</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-sm font-medium mb-1">Proficiency (1-5)</label>
+            <input type="number" name="proficiency" min="1" max="5" value="3"
+                class="w-20 px-3 py-2 rounded-lg border border-gray-300 dark:border-white/10 dark:bg-white/5" />
+        </div>
+        <button type="submit" class="btn-primary">Add</button>
+    </form>
+
+    <div class="space-y-2">
+        <% skills.forEach(skill=> { %>
+            <div class="card flex justify-between items-center py-3">
+                <span>
+                    <%= skill.name %> <span class="text-xs text-gray-500">(<%= skill.category %>, <%= skill.proficiency
+                                    %>/5)</span>
+                </span>
+                <form action="/admin/skills/<%= skill._id %>?_method=DELETE" method="POST"
+                    onsubmit="return confirm('Remove this skill?');">
+                    <button type="submit" class="text-red-500 hover:text-red-600 text-sm font-medium">Remove</button>
+                </form>
+            </div>
+            <% }) %>
+    </div>
+</section>
